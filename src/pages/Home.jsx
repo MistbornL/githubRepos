@@ -2,12 +2,15 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 export const Home = () => {
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("");
   const [showComponent, setShowComponent] = useState(false);
+
   const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=5`;
   const handleChange = (e) => {
     setName(e.target.value);
@@ -36,7 +39,11 @@ export const Home = () => {
     return (
       <ul>
         {response.map((item) => {
-          return <li key={item.id}>{item.full_name}</li>;
+          return (
+            <Link to={`/repo-detail/${item.id}`}>
+              <li key={item.id}>{item.full_name}</li>;
+            </Link>
+          );
         })}
       </ul>
     );
