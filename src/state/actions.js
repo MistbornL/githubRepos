@@ -1,10 +1,8 @@
-import { CHANGE_LIKED } from "./types";
+import { GET_RESPONSE } from "./type";
 
-export const changeLiked = (id, liked, numberOfLikes) => ({
-  type: CHANGE_LIKED,
+export const saveResponse = (response) => ({
+  type: GET_RESPONSE,
   payload: {
-    id,
-    liked,
-    numberOfLikes,
+    response,
   },
 });

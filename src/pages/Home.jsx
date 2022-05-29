@@ -2,16 +2,18 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { saveResponse } from "../state/actions";
 import "./index.css";
 
 export const Home = () => {
-  const [response, setResponse] = useState([]);
   const [name, setName] = useState("");
   const [showComponent, setShowComponent] = useState(false);
-
+  const dispatch = useDispatch();
+  const reduxData = useSelector((state) => state);
   const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=5`;
+
   const handleChange = (e) => {
     setName(e.target.value);
   };
@@ -21,13 +23,13 @@ export const Home = () => {
       .get(url)
       .then((response) => {
         // handle success
-        setResponse(response.data.items);
+        dispatch(saveResponse(response.data.items));
       })
       .catch((error) => {
         // handle error
         console.log(error);
       });
-  }, [url]);
+  }, [url, dispatch]);
 
   const handleButton = (e) => {
     e.preventDefault();
@@ -38,7 +40,7 @@ export const Home = () => {
   const Data = () => {
     return (
       <ul>
-        {response.map((item) => {
+        {reduxData.responseData.map((item) => {
           return (
             <Link to={`/repo-detail/${item.id}`}>
               <li key={item.id}>{item.full_name}</li>;
