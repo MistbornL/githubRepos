@@ -13,11 +13,9 @@ export const Home = () => {
   const dispatch = useDispatch();
   const reduxData = useSelector((state) => state);
   const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=5`;
-
   const handleChange = (e) => {
     setName(e.target.value);
   };
-
   useEffect(() => {
     axios
       .get(url)
@@ -30,11 +28,9 @@ export const Home = () => {
         console.log(error);
       });
   }, [url, dispatch]);
-
   const handleButton = (e) => {
     e.preventDefault();
     setShowComponent(!showComponent);
-    setName("");
   };
 
   const Data = () => {
@@ -50,14 +46,12 @@ export const Home = () => {
       </ul>
     );
   };
-
   return (
     <div className="search-wrap">
       <div>
         <input onChange={handleChange} placeholder="Search..." type="text" />
         <button onClick={handleButton}>Search</button>
       </div>
-
       <nav className="data">{showComponent ? <Data /> : null}</nav>
     </div>
   );
