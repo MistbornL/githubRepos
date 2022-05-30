@@ -10,6 +10,7 @@ a {
 .data li {
   list-style: none;
   font-size: 18px;
+  color: rgb(153, 6, 167);
   font-family: monospace;
   margin-top: 7px;
 }
@@ -19,7 +20,6 @@ a {
 }
 
 .data {
-  margin-top: 50%;
   display: flex;
   justify-content: center;
   text-align: left;

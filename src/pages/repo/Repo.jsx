@@ -11,18 +11,16 @@ export const Repo = () => {
   const [repo, setRepo] = useState({ id: 0 });
   useEffect(() => {
     reduxData.responseData.map((item) => {
-      if (item.id == params.id) {
+      if (item.id.toString() === params.id) {
         setRepo(item);
       }
       return item;
     });
-
-    console.log(repo);
   }, [reduxData.responseData, params.id]);
 
   return (
     <div className="card-wrapper">
-      <BasicCard repo={repo}></BasicCard>
+      <BasicCard key={repo.id} repo={repo}></BasicCard>
     </div>
   );
 };

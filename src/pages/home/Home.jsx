@@ -43,8 +43,8 @@ export const Home = () => {
       <ul>
         {reduxData.responseData.map((item) => {
           return (
-            <Link to={`/repo-detail/${item.id}`}>
-              <li key={item.id}>{item.full_name}</li>
+            <Link key={item.id} to={`/repo-detail/${item.id}`}>
+              <li>{item.full_name}</li>
             </Link>
           );
         })}
