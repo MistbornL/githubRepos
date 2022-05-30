@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Repo } from "./pages/Repo";
+import { Home } from "./pages/home/Home";
+import { Repo } from "./pages/repo/Repo";
 
 function App() {
   return (

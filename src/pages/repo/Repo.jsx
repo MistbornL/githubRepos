@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import BasicCard from "../../ui/car";
+import BasicCard from "../../ui/card";
 import "./repo.css";
 export const Repo = () => {
   const params = useParams();
@@ -13,10 +13,8 @@ export const Repo = () => {
     reduxData.responseData.map((item) => {
       if (item.id == params.id) {
         setRepo(item);
-        console.log(true);
-      } else {
-        console.log("no");
       }
+      return item;
     });
 
     console.log(repo);
@@ -24,7 +22,7 @@ export const Repo = () => {
 
   return (
     <div className="card-wrapper">
-      <BasicCard></BasicCard>
+      <BasicCard repo={repo}></BasicCard>
     </div>
   );
 };

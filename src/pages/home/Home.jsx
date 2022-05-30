@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { saveResponse } from "../state/actions";
+import { saveResponse } from "../../state/actions";
 import "./index.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 export const Home = () => {
   const [name, setName] = useState("");
@@ -13,9 +15,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   const reduxData = useSelector((state) => state);
   const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=5`;
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
+
   useEffect(() => {
     axios
       .get(url)
@@ -28,6 +28,11 @@ export const Home = () => {
         console.log(error);
       });
   }, [url, dispatch]);
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+
   const handleButton = (e) => {
     e.preventDefault();
     setShowComponent(!showComponent);
@@ -39,7 +44,7 @@ export const Home = () => {
         {reduxData.responseData.map((item) => {
           return (
             <Link to={`/repo-detail/${item.id}`}>
-              <li key={item.id}>{item.full_name}</li>;
+              <li key={item.id}>{item.full_name}</li>
             </Link>
           );
         })}
@@ -48,9 +53,18 @@ export const Home = () => {
   };
   return (
     <div className="search-wrap">
-      <div>
-        <input onChange={handleChange} placeholder="Search..." type="text" />
-        <button onClick={handleButton}>Search</button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <TextField
+          id="standard-basic"
+          label="Standard"
+          variant="standard"
+          onChange={handleChange}
+          placeholder="Search..."
+          type="text"
+        />
+        <Button variant="contained" onClick={handleButton}>
+          Search
+        </Button>
       </div>
       <nav className="data">{showComponent ? <Data /> : null}</nav>
     </div>
