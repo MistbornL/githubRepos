@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import BasicCard from "../../ui/car";
+import "./repo.css";
 export const Repo = () => {
   const params = useParams();
   const reduxData = useSelector((state) => state);
@@ -22,8 +23,8 @@ export const Repo = () => {
   }, [reduxData.responseData, params.id]);
 
   return (
-    <div>
-      <p>{repo.name}</p>
+    <div className="card-wrapper">
+      <BasicCard></BasicCard>
     </div>
   );
 };
