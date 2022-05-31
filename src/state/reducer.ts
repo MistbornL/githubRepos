@@ -1,4 +1,4 @@
-import { GET_RESPONSE } from "./type";
+import { GET_RESPONSE } from "./type.ts";
 
 const initialState = {
   responseData: [],

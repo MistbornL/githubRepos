@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import BasicCard from "../../ui/card";
+import { BasicCard } from "../../ui/card.tsx";
+
 import "./repo.css";
 export const Repo = () => {
   const params = useParams();

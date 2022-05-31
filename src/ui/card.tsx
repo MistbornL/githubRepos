@@ -6,9 +6,13 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function BasicCard({ repo }) {
+interface Repo {
+  repo: any;
+}
+
+export const BasicCard: React.FC<Repo> = ({ repo }) => {
   const routeChange = () => {
-    let path = `${repo.owner.html_url}`;
+    const path = `${repo.owner.html_url}`;
     window.location.href = path;
   };
   return (
@@ -38,4 +42,4 @@ export default function BasicCard({ repo }) {
       </CardActions>
     </Card>
   );
-}
+};
