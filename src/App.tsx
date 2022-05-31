@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 import { Repo } from "./pages/repo/Repo";
-import { Home } from "./pages/home/Home.tsx";
+import { Home } from "./pages/home/Home";
 
 function App() {
   return (

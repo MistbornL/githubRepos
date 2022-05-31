@@ -1,11 +1,11 @@
 import axios from "axios";
-import React from "react";
+import * as React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useAppSelector } from "../../hooks.tsx";
-import { useAppDispatch } from "../../hooks.tsx";
+import { useAppSelector } from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 import { Link } from "react-router-dom";
-import { saveResponse } from "../../state/actions.tsx";
+import { saveResponse } from "../../state/actions";
 import "./index.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -42,7 +42,7 @@ export const Home: React.FC = () => {
   const Data = () => {
     return (
       <ul>
-        {reduxData.responseData.map((item) => {
+        {reduxData.responseData.map((item: any) => {
           return (
             <Link key={item.id} to={`/repo-detail/${item.id}`}>
               <li>{item.full_name}</li>

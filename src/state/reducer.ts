@@ -1,10 +1,11 @@
-import { GET_RESPONSE } from "./type.ts";
+import { GET_RESPONSE } from "./type";
 
-const initialState = {
+var initialState: any;
+initialState = {
   responseData: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case GET_RESPONSE: {
       return {
