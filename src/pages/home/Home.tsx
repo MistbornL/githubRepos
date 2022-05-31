@@ -52,6 +52,7 @@ export const Home: React.FC = () => {
       </ul>
     );
   };
+
   return (
     <header>
       <div className="search-wrap">

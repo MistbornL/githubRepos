@@ -11,10 +11,12 @@ interface Repo {
 }
 
 export const BasicCard: React.FC<Repo> = ({ repo }) => {
-  const routeChange = () => {
+  const routeChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const path = `${repo.owner.html_url}`;
     window.location.href = path;
   };
+
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -34,11 +36,9 @@ export const BasicCard: React.FC<Repo> = ({ repo }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        {/* <Link to={{ pathname: repo.owner.html_url }} target="_blank"> */}
         <Button onClick={routeChange} size="small">
           Learn More
         </Button>
-        {/* </Link> */}
       </CardActions>
     </Card>
   );

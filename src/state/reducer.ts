@@ -1,9 +1,10 @@
 import { GET_RESPONSE } from "./type";
 
-var initialState: any;
-initialState = {
+const initialState: { responseData: any[] } = {
   responseData: [],
 };
+
+initialState.responseData = [];
 
 const reducer = (state = initialState, action: any) => {
   switch (action.type) {
