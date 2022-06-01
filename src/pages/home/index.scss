@@ -20,6 +20,11 @@ a {
     padding: 0;
   }
 
+  ul:hover {
+    box-shadow: 0 0 10px #1c056d, 0 0 40px #cf12c0,
+      0 0 80px rgba(64, 117, 255, 5);
+  }
+
   li {
     list-style: none;
     font-size: 18px;
@@ -27,8 +32,4 @@ a {
     font-family: monospace;
     margin-top: 7px;
   }
-}
-
-.data ul:hover {
-  box-shadow: 0 0 10px #1c056d, 0 0 40px #cf12c0, 0 0 80px rgba(64, 117, 255, 5);
 }
