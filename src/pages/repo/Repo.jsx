@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BasicCard } from "../../ui/card.tsx";
 
 import "./repo.css";
@@ -11,7 +11,6 @@ export const Repo = () => {
   const params = useParams();
   const reduxData = useSelector((state) => state);
   const [repo, setRepo] = useState({ id: 0 });
-  console.log(repo);
   useEffect(() => {
     reduxData.responseData.map((item) => {
       if (item.id.toString() === params.id) {
@@ -34,7 +33,7 @@ export const Repo = () => {
           <AlertTitle>
             <strong>Error</strong>
           </AlertTitle>
-          not found
+          not found <Link to="/">Home</Link>
         </Alert>
       </div>
     );

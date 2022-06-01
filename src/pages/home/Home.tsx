@@ -6,7 +6,7 @@ import { useAppSelector } from "../../hooks";
 import { useAppDispatch } from "../../hooks";
 import { Link } from "react-router-dom";
 import { saveResponse } from "../../state/actions";
-import "./index.css";
+import "./index.scss";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
@@ -58,6 +58,7 @@ export const Home: React.FC = () => {
       <div className="search-wrap">
         <form style={{ display: "flex", justifyContent: "center" }}>
           <TextField
+            value={name}
             id="standard-basic"
             label="Standard"
             variant="standard"

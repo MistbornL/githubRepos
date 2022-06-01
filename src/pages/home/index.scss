@@ -1,0 +1,28 @@
+$pinkColor: rgb(153, 6, 167);
+
+.search-wrap {
+  text-align: center;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+.data {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    font-size: 18px;
+    color: $pinkColor;
+    font-family: monospace;
+    margin-top: 7px;
+  }
+}
