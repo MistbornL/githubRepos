@@ -12,32 +12,42 @@ import TextField from "@mui/material/TextField";
 
 export const Home: React.FC = () => {
   const [name, setName] = useState<string>("");
-  const [showComponent, setShowComponent] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(2);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const reduxData = useAppSelector((state) => state);
-  const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=5`;
 
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        // handle success
-        dispatch(saveResponse(response.data.items));
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
-  }, [url, dispatch]);
+  const fetchData = async () => {
+    try {
+      const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=${page}`;
+      axios
+        .get(url)
+        .then((response) => {
+          // handle success
+          dispatch(saveResponse(response.data.items));
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setShowComponent(!showComponent);
-    setName("");
+    await fetchData();
+    // setName("");
+  };
+
+  const handlePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setPage(page + 1);
   };
 
   const Data = () => {
@@ -70,8 +80,14 @@ export const Home: React.FC = () => {
           <Button variant="contained" onClick={handleButton}>
             Search
           </Button>
+          {isLoading && <h2>Loading...</h2>}
+          <Button variant="contained" onClick={handlePage}>
+            next page
+          </Button>
         </form>
-        <nav className="data">{showComponent ? <Data /> : null}</nav>
+        <nav className="data">
+          <Data />
+        </nav>
       </div>
     </header>
   );
