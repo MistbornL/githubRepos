@@ -18,6 +18,7 @@ export const Home: React.FC = () => {
   const reduxData = useAppSelector((state) => state);
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const url = `https://api.github.com/search/repositories?q=${name}%20in:name&per_page=${page}`;
       axios
@@ -45,9 +46,10 @@ export const Home: React.FC = () => {
     // setName("");
   };
 
-  const handlePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handlePage = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPage(page + 1);
+    await fetchData();
   };
 
   const Data = () => {
@@ -84,6 +86,7 @@ export const Home: React.FC = () => {
           <Button variant="contained" onClick={handlePage}>
             next page
           </Button>
+          {isLoading && <h2>Loading...</h2>}
         </form>
         <nav className="data">
           <Data />
