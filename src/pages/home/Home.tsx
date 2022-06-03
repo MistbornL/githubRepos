@@ -37,6 +37,7 @@ export const Home: React.FC = () => {
   const handleButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowComponent(!showComponent);
+    setName("");
   };
 
   const Data = () => {
